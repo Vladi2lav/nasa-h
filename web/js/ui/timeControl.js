@@ -1,6 +1,6 @@
 import { icon } from './icons.js';
 import { utcInputValue, parseUtcInput, roundToHour, LUNAR_DAY_DAYS, utc } from './format.js';
-import { throttle } from './dom.js';
+import { throttle, bindUtcInput } from './dom.js';
 
 const H = 3600000;
 const D = 86400000;
@@ -81,23 +81,15 @@ export function mount(container, app) {
   });
   speedSel.addEventListener('change', () => store.set({ speed: Number(speedSel.value) }));
   container.querySelector('.tc-now').addEventListener('click', () => app.setTime(roundToHour(Date.now())));
-  const commit = () => {
-    const ms = parseUtcInput(input.value);
-    if (!Number.isFinite(ms)) {
-      app.toast('Enter a date and time as YYYY-MM-DD HH:MM (UTC).', 'warn', { key: 'tc-parse' });
-      input.value = utcInputValue(store.get().timeMs);
-      return;
-    }
-    if (ms !== store.get().timeMs) app.setTime(ms);
-  };
-  input.addEventListener('change', commit);
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      commit();
-    }
+  const unbindInput = bindUtcInput(input, {
+    parse: parseUtcInput,
+    format: utcInputValue,
+    current: () => store.get().timeMs,
+    apply: (ms) => app.setTime(ms),
+    minMs: app.coverage.startMs,
+    maxMs: app.coverage.endMs,
+    hint: `Available dates: ${utcInputValue(app.coverage.startMs).slice(0, 10)} to ${utcInputValue(app.coverage.endMs).slice(0, 10)} (UTC)`,
   });
-  input.addEventListener('blur', () => { input.value = utcInputValue(store.get().timeMs); });
 
   const onKey = (e) => {
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -124,6 +116,7 @@ export function mount(container, app) {
   return {
     destroy() {
       unsub.forEach((u) => u());
+      unbindInput();
       renderTime.cancel();
       document.removeEventListener('keydown', onKey);
       container.removeEventListener('click', onClick);

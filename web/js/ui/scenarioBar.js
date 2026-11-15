@@ -1,13 +1,24 @@
 import { icon } from './icons.js';
 import { escapeHtml, latlon, utcInputValue, parseUtcInput, roundToHour, shortName } from './format.js';
-import { preserveFocus } from './dom.js';
+import { preserveFocus, bindUtcInput } from './dom.js';
 
 const DAY = 86400000;
 
 export function mount(container, app) {
   const { store } = app;
 
+  let unbinds = [];
+  let deferred = false;
+  const editing = () => {
+    const a = document.activeElement;
+    return a && container.contains(a) && a.matches('input[data-field]');
+  };
+
   function render() {
+    if (editing()) { deferred = true; return; }
+    deferred = false;
+    unbinds.forEach((u) => u());
+    unbinds = [];
     const s = store.get();
     const act = store.active();
     const n = s.scenarios.length;
@@ -26,7 +37,20 @@ export function mount(container, app) {
           <span class="scn-hint">Times are UTC. Click a scenario to make it active.</span>
         </div>`;
     });
+    for (const inp of container.querySelectorAll('input[data-field="t0"]')) {
+      const id = inp.closest('.scn')?.dataset.id;
+      unbinds.push(bindUtcInput(inp, {
+        parse: parseUtcInput,
+        format: utcInputValue,
+        current: () => store.get().scenarios.find((x) => x.id === id)?.t0Ms,
+        apply: (ms) => store.updateScenario(id, { t0Ms: ms }),
+        minMs: app.coverage.startMs,
+        maxMs: app.coverage.endMs,
+        hint: `Available dates: ${utcInputValue(app.coverage.startMs).slice(0, 10)} to ${utcInputValue(app.coverage.endMs).slice(0, 10)} (UTC)`,
+      }));
+    }
   }
+  container.addEventListener('focusout', () => { setTimeout(() => { if (deferred && !editing()) render(); }, 0); });
 
   function chip(sc, isActive, n) {
     const id = escapeHtml(sc.id);
@@ -111,15 +135,8 @@ export function mount(container, app) {
     const id = inp.closest('.scn')?.dataset.id;
     const sc = store.get().scenarios.find((x) => x.id === id);
     if (!sc) return;
-    if (inp.dataset.field === 't0') {
-      const ms = parseUtcInput(inp.value);
-      if (!Number.isFinite(ms)) {
-        app.toast('Enter the landing time as YYYY-MM-DD HH:MM (UTC).', 'warn', { key: 'scn-parse' });
-        inp.value = utcInputValue(sc.t0Ms);
-        return;
-      }
-      if (ms !== sc.t0Ms) store.updateScenario(id, { t0Ms: ms });
-    } else {
+    if (inp.dataset.field === 't0') return;
+    {
       let d = Math.round(Number(inp.value));
       if (!(d >= 1 && d <= 400)) {
         app.toast('Mission duration must be between 1 and 400 days.', 'warn', { key: 'scn-days' });
@@ -130,7 +147,7 @@ export function mount(container, app) {
     }
   };
   const onKey = (e) => {
-    if (e.key === 'Enter' && e.target.matches('[data-field]')) {
+    if (e.key === 'Enter' && e.target.matches('[data-field="days"]')) {
       e.preventDefault();
       onChange(e);
     }
@@ -145,6 +162,7 @@ export function mount(container, app) {
   return {
     destroy() {
       unsub();
+      unbinds.forEach((u) => u());
       container.removeEventListener('click', onClick);
       container.removeEventListener('change', onChange);
       container.removeEventListener('keydown', onKey);

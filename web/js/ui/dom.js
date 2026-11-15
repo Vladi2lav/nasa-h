@@ -118,3 +118,52 @@ export function preserveFocus(root, render) {
 
 export const reducedMotion = () =>
   typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+export function bindUtcInput(input, { parse, format, current, apply, minMs, maxMs, delay = 250, hint = '' }) {
+  let timer = 0;
+  let pending = null;
+  const setInvalid = (on) => {
+    input.classList.toggle('is-invalid', on);
+    if (on) input.setAttribute('aria-invalid', 'true');
+    else input.removeAttribute('aria-invalid');
+    input.title = on ? hint : '';
+  };
+  const flush = () => {
+    clearTimeout(timer);
+    timer = 0;
+    if (pending !== null) {
+      const ms = pending;
+      pending = null;
+      if (ms !== current()) apply(ms);
+    }
+  };
+  const onInput = () => {
+    const ms = parse(input.value);
+    const ok = Number.isFinite(ms) && ms >= minMs && ms <= maxMs;
+    setInvalid(!ok && input.value !== '');
+    if (!ok) { pending = null; clearTimeout(timer); return; }
+    pending = ms;
+    clearTimeout(timer);
+    timer = setTimeout(flush, delay);
+  };
+  const onKey = (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); flush(); input.blur(); }
+    if (e.key === 'Escape') { pending = null; clearTimeout(timer); input.value = format(current()); setInvalid(false); input.blur(); }
+  };
+  const onBlur = () => {
+    flush();
+    input.value = format(current());
+    setInvalid(false);
+  };
+  input.addEventListener('input', onInput);
+  input.addEventListener('change', onInput);
+  input.addEventListener('keydown', onKey);
+  input.addEventListener('blur', onBlur);
+  return () => {
+    clearTimeout(timer);
+    input.removeEventListener('input', onInput);
+    input.removeEventListener('change', onInput);
+    input.removeEventListener('keydown', onKey);
+    input.removeEventListener('blur', onBlur);
+  };
+}

@@ -105,3 +105,5 @@ strong, b { font-weight: 600; }
 .learn-title { font-size: 16px; font-weight: 600; }
 .learn-figure { font-weight: 600; }
 .learn-body { line-height: 1.6; }
+
+input.is-invalid { border-color: var(--bad) !important; box-shadow: 0 0 0 1px var(--bad); }
