@@ -1,0 +1,15 @@
+{
+ "format": "lunarnav-dem-1",
+ "projection": "equirect",
+ "pole": null,
+ "width": 2880,
+ "height": 1440,
+ "radius_m": 1737400.0,
+ "ppd": 8.0,
+ "nodata": -32768,
+ "units": "m above 1737.4 km sphere, int16 little-endian",
+ "min_m": -8814,
+ "max_m": 10650,
+ "source": "LOLA LDEM_128 (PDS, 236.9 m/px) area-averaged 16x16 to 8 px/deg",
+ "file": "global.i16.gz"
+}

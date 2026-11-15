@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lunar Landing Site Navigator — demo</title>
+<style>
+  :root { --bg:#0b0b0c; --fg:#ededef; --fg2:#a1a1aa; --fg3:#71717a; --line:#26262b; --sun:#e9a23b; --earth:#5b9cf5; }
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-snap-type: y mandatory; }
+  body { background: var(--bg); color: var(--fg); font: 400 20px/1.5 "Inter","Segoe UI",system-ui,sans-serif; -webkit-font-smoothing: antialiased; }
+  section { min-height: 100vh; scroll-snap-align: start; padding: 8vh 9vw; display: grid; align-content: center; gap: 28px; border-bottom: 1px solid var(--line); position: relative; }
+  .n { position: absolute; right: 9vw; bottom: 5vh; color: var(--fg3); font-size: 14px; font-variant-numeric: tabular-nums; }
+  .eyebrow { color: var(--fg3); font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+  h1 { font-size: clamp(40px, 6vw, 76px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; max-width: 16ch; }
+  h2 { font-size: clamp(30px, 3.6vw, 48px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; max-width: 24ch; }
+  p { color: var(--fg2); max-width: 62ch; }
+  p b { color: var(--fg); font-weight: 600; }
+  .two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+  .two > div { display: grid; gap: 22px; }
+  img { width: 100%; border: 1px solid var(--line); border-radius: 8px; display: block; }
+  ul { list-style: none; padding: 0; display: grid; gap: 14px; color: var(--fg2); max-width: 60ch; }
+  li { padding-left: 22px; position: relative; }
+  li::before { content: ""; position: absolute; left: 0; top: .72em; width: 10px; height: 1px; background: var(--fg3); }
+  li b { color: var(--fg); font-weight: 600; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; max-width: 1000px; }
+  .stat b { display: block; font-size: clamp(34px, 4vw, 56px); font-weight: 600; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: var(--fg); }
+  .stat span { color: var(--fg2); font-size: 17px; }
+  .sun { color: var(--sun); } .earth { color: var(--earth); }
+  .meta { color: var(--fg3); font-size: 16px; }
+  @media (max-width: 900px) { .two, .stats { grid-template-columns: 1fr; } body { font-size: 17px; } }
+  @media print { section { min-height: auto; height: 100vh; page-break-after: always; } }
+</style>
+</head>
+<body>
+
+<section>
+  <div class="eyebrow">NASA Space Apps Challenge 2026 · Lunar Landing Site Navigator</div>
+  <h1>Will this landing site have power and a link to Earth?</h1>
+  <p>Lunar Landing Site Navigator answers in seconds, for any site and any date, against the real lunar skyline.</p>
+  <p class="meta">Team: TEAM_NAME · Members: MEMBER_NAMES</p>
+  <span class="n">1 / 7</span>
+</section>
+
+<section>
+  <div class="eyebrow">The problem</div>
+  <h2>At the south pole, a mountain decides whether a mission lives.</h2>
+  <ul>
+    <li>The <b class="sun">Sun</b> never rises more than about 1.5° there, and the <b class="earth">Earth</b> bobs within a few degrees of the horizon. A ridge 50 km away switches power or communication off.</li>
+    <li>Launch dates slip. Every slip means re-checking light and link for the new date, and for backup sites.</li>
+    <li>Today that takes several expert tools — Horizons for angles, QuickMap or Moon Trek for terrain — and hand work to combine them. Sphere-only answers are simply wrong at the pole.</li>
+  </ul>
+  <span class="n">2 / 7</span>
+</section>
+
+<section>
+  <div class="two">
+    <div>
+      <div class="eyebrow">The product</div>
+      <h2>One screen: sunlit or not, linked or not, and for how long.</h2>
+      <p>Pick a site and a time. The status card counts down to <b>sunset, sunrise, Earthset and Earthrise</b>; the sky panorama shows the Sun and Earth against the terrain horizon; the timeline shows the whole mission.</p>
+    </div>
+    <img src="img/explore.png" alt="Explore view: globe, status card with countdowns, sky panorama">
+  </div>
+  <span class="n">3 / 7</span>
+</section>
+
+<section>
+  <div class="two">
+    <div>
+      <div class="eyebrow">When the date slips</div>
+      <h2>Every landing window of the year, in 150 milliseconds.</h2>
+      <p>Set the requirements — Sun elevation at landing, hours of continuous sunlight, communication coverage — and see which dates still work. Compare sites side by side and share the scenario as a link.</p>
+    </div>
+    <img src="img/plan.png" alt="Plan view: feasible landing windows and year heatmap">
+  </div>
+  <span class="n">4 / 7</span>
+</section>
+
+<section>
+  <div class="two">
+    <div>
+      <div class="eyebrow">For everyone</div>
+      <h2>Earth and Moon at true scale, with what is flying there now.</h2>
+      <p>Zoom the globe out to the whole system: the Earth at its real size and distance, and spacecraft in lunar orbit from JPL Horizons. Together with the Learn view it shows students and the public why polar landings are hard — with the same data planners use.</p>
+    </div>
+    <img src="img/system.png" alt="Globe zoomed out: Earth at true size and distance, spacecraft markers">
+  </div>
+  <span class="n">5 / 7</span>
+</section>
+
+<section>
+  <div class="eyebrow">Real NASA data, validated</div>
+  <h2>No synthetic terrain. No approximations of our own.</h2>
+  <div class="stats">
+    <div class="stat"><b>0.0002°</b><span>largest difference from JPL Horizons, 1969–2040</span></div>
+    <div class="stat"><b>20 m</b><span>LOLA elevation model behind polar horizons</span></div>
+    <div class="stat"><b>62 + 13</b><span>landing sites and deep-space ground stations</span></div>
+  </div>
+  <ul>
+    <li><b>NASA/JPL SPICE</b> DE440 ephemeris and lunar orientation, 1969–2060.</li>
+    <li><b>NASA LRO LOLA</b> elevation models and average-illumination maps; <b>LROC</b> colour mosaic.</li>
+    <li>Ground stations of NASA DSN and partner agencies: ESA, JAXA, ISRO, KASA, UK.</li>
+  </ul>
+  <span class="n">6 / 7</span>
+</section>
+
+<section>
+  <div class="eyebrow">Impact</div>
+  <h2>A planning answer in seconds instead of hours — open to anyone with a browser.</h2>
+  <ul>
+    <li><b>Planners</b> re-evaluate a site or a date the moment a schedule moves.</li>
+    <li><b>Science and engineering teams</b> look at the same picture and the same numbers.</li>
+    <li><b>Educators and the public</b> explore real mission geometry.</li>
+    <li>Static web app: no server, no install, works offline, fully reproducible from NASA sources, open source.</li>
+  </ul>
+  <p class="meta">Not affiliated with or endorsed by NASA.</p>
+  <span class="n">7 / 7</span>
+</section>
+
+</body>
+</html>

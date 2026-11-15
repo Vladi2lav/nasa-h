@@ -1,0 +1,58 @@
+const P = {
+  sun: '<circle cx="10" cy="10" r="3.6"/><path d="M10 1.8v2.4M10 15.8v2.4M1.8 10h2.4M15.8 10h2.4M4.2 4.2l1.7 1.7M14.1 14.1l1.7 1.7M4.2 15.8l1.7-1.7M14.1 5.9l1.7-1.7"/>',
+  sunset: '<path d="M5.6 13.5a4.4 4.4 0 0 1 8.8 0"/><path d="M1.8 16.5h16.4M10 3v4.4M7.6 5.4 10 7.8l2.4-2.4M3.6 9.6l1.4 1.1M16.4 9.6 15 10.7"/>',
+  sunrise: '<path d="M5.6 13.5a4.4 4.4 0 0 1 8.8 0"/><path d="M1.8 16.5h16.4M10 7.8V3.4M7.6 5.8 10 3.4l2.4 2.4M3.6 9.6l1.4 1.1M16.4 9.6 15 10.7"/>',
+  shadow: '<circle cx="10" cy="10" r="6.5"/><path d="M10 3.5a6.5 6.5 0 0 0 0 13z" fill="currentColor" stroke="none"/>',
+  earth: '<circle cx="10" cy="10" r="7"/><path d="M3 10h14M10 3c2.2 2 3.2 4.4 3.2 7s-1 5-3.2 7M10 3C7.8 5 6.8 7.4 6.8 10s1 5 3.2 7"/>',
+  earthrise: '<path d="M4.5 14a5.5 5.5 0 0 1 11 0"/><path d="M1.8 16.5h16.4M10 7.4V2.8M7.8 5 10 2.8 12.2 5"/>',
+  earthset: '<path d="M4.5 14a5.5 5.5 0 0 1 11 0"/><path d="M1.8 16.5h16.4M10 2.8v4.6M7.8 5.2 10 7.4l2.2-2.2"/>',
+  link: '<path d="M10 11.5v6"/><path d="M6.8 18h6.4"/><path d="M6 8.4a4 4 0 0 1 8 0"/><path d="M3.2 6.6a7.2 7.2 0 0 1 13.6 0"/><circle cx="10" cy="10.2" r="1.3" fill="currentColor" stroke="none"/>',
+  nolink: '<path d="M10 11.5v6M6.8 18h6.4M6 8.4a4 4 0 0 1 8 0M3.2 6.6a7.2 7.2 0 0 1 13.6 0"/><path d="M3 3l14 14"/>',
+  antenna: '<path d="M4 16 9 8"/><path d="M3.3 6.3a6 6 0 0 0 8.4 8.4z"/><path d="M12 4.5a3.5 3.5 0 0 1 3.5 3.5M12.3 1.8A6.2 6.2 0 0 1 18.2 7.7"/><path d="M2.5 18h7"/>',
+  power: '<path d="M11.2 1.8 4.6 11h4.8l-1 7.2L15.4 9h-4.8z"/>',
+  mountain: '<path d="M1.8 16.5 7.4 6.8l3.2 5.2 2.2-3.2 5.4 7.7z"/>',
+  clock: '<circle cx="10" cy="10" r="7.2"/><path d="M10 5.6V10l3 2"/>',
+  play: '<path d="M6.5 4.2v11.6L15.8 10z" fill="currentColor"/>',
+  pause: '<path d="M6.4 4.4v11.2M13.6 4.4v11.2" stroke-width="2.6"/>',
+  stepBack: '<path d="M12.5 4.5 7 10l5.5 5.5"/>',
+  stepFwd: '<path d="M7.5 4.5 13 10l-5.5 5.5"/>',
+  dblBack: '<path d="M10 4.5 4.5 10l5.5 5.5M15.5 4.5 10 10l5.5 5.5"/>',
+  dblFwd: '<path d="M10 4.5l5.5 5.5-5.5 5.5M4.5 4.5 10 10l-5.5 5.5"/>',
+  moon: '<path d="M15.8 12.6A6.8 6.8 0 0 1 7.4 4.2a6.8 6.8 0 1 0 8.4 8.4z"/>',
+  search: '<circle cx="8.6" cy="8.6" r="5.4"/><path d="m12.6 12.6 4.8 4.8"/>',
+  plus: '<path d="M10 4v12M4 10h12"/>',
+  replace: '<path d="M3.5 7.5h11l-3-3M16.5 12.5h-11l3 3"/>',
+  copy: '<rect x="6.5" y="6.5" width="9.5" height="9.5" rx="1.6"/><path d="M13.5 6.5V5.2A1.6 1.6 0 0 0 11.9 3.6H5.2a1.6 1.6 0 0 0-1.6 1.6v6.7a1.6 1.6 0 0 0 1.6 1.6h1.3"/>',
+  trash: '<path d="M3.5 5.5h13M8 5.5V3.8h4v1.7M5.2 5.5l.8 11h8l.8-11M8.4 8.5v5M11.6 8.5v5"/>',
+  sliders: '<path d="M3 5.5h8M15 5.5h2M3 14.5h2M9 14.5h8"/><circle cx="13" cy="5.5" r="2"/><circle cx="7" cy="14.5" r="2"/>',
+  download: '<path d="M10 3v9.5M6 8.8l4 4 4-4M3.5 16.5h13"/>',
+  share: '<path d="M8.3 11.7a3.2 3.2 0 0 0 4.5 0l2.9-2.9a3.2 3.2 0 0 0-4.5-4.5l-1 1"/><path d="M11.7 8.3a3.2 3.2 0 0 0-4.5 0l-2.9 2.9a3.2 3.2 0 0 0 4.5 4.5l1-1"/>',
+  print: '<path d="M5.5 7.5V3h9v4.5M5.5 14H3.5V8.5a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1V14h-2"/><rect x="5.5" y="11.5" width="9" height="5.5" rx=".6"/>',
+  info: '<circle cx="10" cy="10" r="7.4"/><path d="M10 9v5"/><circle cx="10" cy="6.3" r=".9" fill="currentColor" stroke="none"/>',
+  warning: '<path d="M10 2.8 18 16.6H2z"/><path d="M10 8v4"/><circle cx="10" cy="14.2" r=".9" fill="currentColor" stroke="none"/>',
+  check: '<path d="m4 10.5 3.8 3.8L16 6"/>',
+  close: '<path d="m5 5 10 10M15 5 5 15"/>',
+  menu: '<path d="M3 5.5h14M3 10h14M3 14.5h14"/>',
+  target: '<circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="2"/><path d="M10 1.5v3M10 15.5v3M1.5 10h3M15.5 10h3"/>',
+  pin: '<path d="M10 18s5.5-5.4 5.5-9.6a5.5 5.5 0 0 0-11 0C4.5 12.6 10 18 10 18z"/><circle cx="10" cy="8.4" r="2"/>',
+  layers: '<path d="m10 3 7.5 4L10 11 2.5 7z"/><path d="m2.5 10.5 7.5 4 7.5-4M2.5 14l7.5 4 7.5-4"/>',
+  table: '<rect x="2.5" y="3.5" width="15" height="13" rx="1.5"/><path d="M2.5 8h15M2.5 12.3h15M8 8v8.5"/>',
+  calendar: '<rect x="2.5" y="4" width="15" height="13" rx="1.5"/><path d="M2.5 8h15M6.5 2.5v3M13.5 2.5v3"/>',
+  book: '<path d="M10 5.2C8.2 3.8 5.6 3.4 2.8 3.8v11.6c2.8-.4 5.4 0 7.2 1.4 1.8-1.4 4.4-1.8 7.2-1.4V3.8c-2.8-.4-5.4 0-7.2 1.4zM10 5.2v11.6"/>',
+  compass: '<circle cx="10" cy="10" r="7.4"/><path d="m12.8 7.2-1.6 4-4 1.6 1.6-4z"/>',
+  sort: '<path d="M7 4v12M4 7l3-3 3 3M13 16V4M10 13l3 3 3-3"/>',
+  sortAsc: '<path d="M10 16V4M5.5 8.5 10 4l4.5 4.5"/>',
+  sortDesc: '<path d="M10 4v12M5.5 11.5 10 16l4.5-4.5"/>',
+  star: '<path d="m10 2.8 2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5L2.8 8.1l5-.7z"/>',
+  crosshair: '<circle cx="10" cy="10" r="7"/><path d="M10 1.5v5M10 13.5v5M1.5 10h5M13.5 10h5"/>',
+  drop: '<path d="M10 2.5 5.4 9.2a5.5 5.5 0 1 0 9.2 0z"/>',
+  logo: '<circle cx="10" cy="10" r="7.6"/><path d="M2.6 12.2c2.4-1 5.3-1.2 8.2-.2 2.2.8 4.4.8 6.6.1" /><circle cx="7.2" cy="7.2" r="1.3"/><circle cx="12.6" cy="6.4" r=".8"/>',
+};
+
+export function icon(name, { size = 18, label = '', cls = '' } = {}) {
+  const body = P[name] || P.info;
+  const a11y = label ? `role="img" aria-label="${label.replace(/"/g, '&quot;')}"` : 'aria-hidden="true" focusable="false"';
+  return `<svg class="ico ${cls}" width="${size}" height="${size}" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" ${a11y}>${body}</svg>`;
+}
+
+export const ICON_NAMES = Object.keys(P);

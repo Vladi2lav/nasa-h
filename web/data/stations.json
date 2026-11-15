@@ -1,0 +1,159 @@
+{
+ "format": "lunarnav-stations-1",
+ "stations": [
+  {
+   "id": "dss-14",
+   "name": "Goldstone DSS-14 (70 m)",
+   "network": "NASA DSN",
+   "country": "USA",
+   "lat": 35.4259,
+   "lon": -116.88954,
+   "alt_m": 1001,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "dss-26",
+   "name": "Goldstone DSS-26 (34 m BWG)",
+   "network": "NASA DSN",
+   "country": "USA",
+   "lat": 35.33569,
+   "lon": -116.87302,
+   "alt_m": 969,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "dss-63",
+   "name": "Madrid DSS-63 (70 m)",
+   "network": "NASA DSN",
+   "country": "Spain",
+   "lat": 40.43121,
+   "lon": -4.248,
+   "alt_m": 865,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "dss-54",
+   "name": "Madrid DSS-54 (34 m BWG)",
+   "network": "NASA DSN",
+   "country": "Spain",
+   "lat": 40.42563,
+   "lon": -4.25409,
+   "alt_m": 837,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "dss-43",
+   "name": "Canberra DSS-43 (70 m)",
+   "network": "NASA DSN",
+   "country": "Australia",
+   "lat": -35.40241,
+   "lon": 148.98127,
+   "alt_m": 689,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "dss-34",
+   "name": "Canberra DSS-34 (34 m BWG)",
+   "network": "NASA DSN",
+   "country": "Australia",
+   "lat": -35.39847,
+   "lon": 148.98197,
+   "alt_m": 692,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/earth_topo_260814.tf"
+  },
+  {
+   "id": "estrack-new-norcia",
+   "name": "ESA New Norcia DSA 1 (35 m)",
+   "network": "ESA ESTRACK",
+   "country": "Australia",
+   "lat": -31.04823,
+   "lon": 116.1915,
+   "alt_m": null,
+   "min_elevation_deg": 10,
+   "source": "https://spiftp.esac.esa.int/data/SPICE/JUICE/kernels/fk/estrack_v07.tf"
+  },
+  {
+   "id": "estrack-cebreros",
+   "name": "ESA Cebreros DSA 2 (35 m)",
+   "network": "ESA ESTRACK",
+   "country": "Spain",
+   "lat": 40.45269,
+   "lon": -4.36755,
+   "alt_m": null,
+   "min_elevation_deg": 10,
+   "source": "https://spiftp.esac.esa.int/data/SPICE/JUICE/kernels/fk/estrack_v07.tf"
+  },
+  {
+   "id": "estrack-malargue",
+   "name": "ESA Malargüe DSA 3 (35 m)",
+   "network": "ESA ESTRACK",
+   "country": "Argentina",
+   "lat": -35.77601,
+   "lon": -69.39819,
+   "alt_m": null,
+   "min_elevation_deg": 10,
+   "source": "https://spiftp.esac.esa.int/data/SPICE/JUICE/kernels/fk/estrack_v07.tf"
+  },
+  {
+   "id": "jaxa-usuda",
+   "name": "JAXA Usuda Deep Space Center (64 m)",
+   "network": "JAXA",
+   "country": "Japan",
+   "lat": 36.13167,
+   "lon": 138.365,
+   "alt_m": 1456,
+   "min_elevation_deg": 10,
+   "source": "https://www.isas.jaxa.jp/en/about/facilities/usuda.html"
+  },
+  {
+   "id": "isro-idsn-byalalu",
+   "name": "ISRO IDSN Byalalu (32 m)",
+   "network": "ISRO IDSN",
+   "country": "India",
+   "lat": 12.89914,
+   "lon": 77.36823,
+   "alt_m": null,
+   "min_elevation_deg": 10,
+   "source": "https://spiftp.esac.esa.int/data/SPICE/JUICE/kernels/fk/estrack_v07.tf"
+  },
+  {
+   "id": "kari-kdsa-yeoju",
+   "name": "KARI Korea Deep Space Antenna, Yeoju (35 m)",
+   "network": "KARI KDSA",
+   "country": "South Korea",
+   "lat": 37.20723,
+   "lon": 127.62181,
+   "alt_m": 145,
+   "min_elevation_deg": 10,
+   "source": "https://naif.jpl.nasa.gov/pub/naif/pds/wgc/lessons/event_finding_kplo/kernels/fk/kdsa01.tf"
+  },
+  {
+   "id": "goonhilly-ghy6",
+   "name": "Goonhilly GHY-6 (32 m)",
+   "network": "Goonhilly Earth Station",
+   "country": "UK",
+   "lat": 50.05044,
+   "lon": -5.18327,
+   "alt_m": null,
+   "min_elevation_deg": 10,
+   "source": "https://spiftp.esac.esa.int/data/SPICE/JUICE/kernels/fk/estrack_v07.tf"
+  },
+  {
+   "id": "jaxa-misasa",
+   "name": "JAXA Misasa Deep Space Station (GREAT, 54 m)",
+   "network": "JAXA",
+   "country": "Japan",
+   "lat": 36.14161,
+   "lon": 138.35286,
+   "alt_m": 1580,
+   "min_elevation_deg": 10,
+   "source": "https://www.isas.jaxa.jp/home/great/english/profile1001en.html"
+  }
+ ]
+}

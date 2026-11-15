@@ -1,0 +1,45 @@
+{
+  "format": "lunarnav-ephem-1",
+  "t0_et": -978264000.0,
+  "step_s": 3600,
+  "chunk_len": 8192,
+  "pad": 2,
+  "first_chunk": 0,
+  "last_chunk": 97,
+  "fields": [
+    "sun_x",
+    "sun_y",
+    "sun_z",
+    "earth_x",
+    "earth_y",
+    "earth_z",
+    "mef_x",
+    "mef_y",
+    "mef_z"
+  ],
+  "tai_minus_utc": 37,
+  "kernels": [
+    "naif0012.tls",
+    "pck00011.tpc",
+    "de440s.bsp",
+    "moon_pa_de440_200625.bpc",
+    "moon_de440_250416.tf",
+    "earth_1962_260806_2126_combined.bpc"
+  ],
+  "generated": "2026-11-14T11:49:15Z",
+  "coverage_utc": [
+    "1969-01-01",
+    "2060-01-01"
+  ],
+  "frames": {
+    "moon": "MOON_ME",
+    "earth_fixed": "ITRF93",
+    "earth_fixed_fallback": "IAU_EARTH"
+  },
+  "abcorr": "LT+S",
+  "units": {
+    "sun": "km",
+    "earth": "km",
+    "mef": "unit vector"
+  }
+}

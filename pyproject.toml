@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lunarnav"
+version = "1.0.0"
+description = "Lunar Landing Site Navigator - Sun/Earth visibility, power and DTE communication windows from NASA SPICE and LOLA data"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  "numpy",
+  "scipy",
+  "spiceypy",
+  "requests",
+  "pillow",
+  "tifffile",
+  "imagecodecs",
+  "numba",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+lunarnav = "lunarnav.cli:main"
+
+[tool.setuptools]
+packages = ["lunarnav"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/python"]

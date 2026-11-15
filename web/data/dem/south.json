@@ -1,0 +1,17 @@
+{
+ "format": "lunarnav-dem-1",
+ "projection": "polar_stereo",
+ "pole": "S",
+ "width": 2560,
+ "height": 2560,
+ "radius_m": 1737400.0,
+ "m_per_px": 240.0,
+ "x0_m": -307080.0,
+ "y0_m": 307080.0,
+ "nodata": -32768,
+ "units": "m above 1737.4 km sphere, int16 little-endian",
+ "min_m": -7286,
+ "max_m": 7024,
+ "source": "LOLA LDEM_80S_20MPP_ADJ (PGDA, 20 m/px) area-averaged 12x12 to 240 m/px; 2.2% of pixels (outside the 20 m grid) from LDEM_128",
+ "file": "south.i16.gz"
+}

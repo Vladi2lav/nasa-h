@@ -1,0 +1,12 @@
+{
+  "name": "lunar-landing-site-navigator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lunar Landing Site Navigator - static web app (no build step)",
+  "scripts": {
+    "test": "node --test \"tests/js/*.test.js\"",
+    "serve": "python -m http.server 8080 --directory web"
+  },
+  "license": "MIT"
+}

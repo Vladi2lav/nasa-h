@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Lunar Landing Site Navigator</title>
+  <meta name="description" content="Compare lunar landing sites and dates: Sun and Earth against the real terrain horizon, countdowns to sunset and Earthset, solar power and direct-to-Earth communication. Computed in the browser from NASA data.">
+  <meta name="color-scheme" content="dark light">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23a9b4cc'/%3E%3Ccircle cx='7' cy='7.5' r='1.6' fill='%236f7c99'/%3E%3Ccircle cx='12.8' cy='12' r='2.2' fill='%236f7c99'/%3E%3C/svg%3E">
+  <script>
+
+    
+    try { var t = localStorage.getItem('lunarnav.theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/charts.css">
+  <link rel="stylesheet" href="css/maps.css">
+  <script type="importmap">{"imports": {"three": "./vendor/three.module.min.js"}}</script>
+  <script type="module" src="js/ui/app.js"></script>
+  <link rel="stylesheet" href="css/polish.css">
+</head>
+<body class="booting" data-view="explore">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <div id="boot" class="boot" role="status" aria-live="polite">
+    <div class="boot-inner">
+      <svg class="boot-logo" width="56" height="56" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true">
+        <circle cx="10" cy="10" r="7.6"/><path d="M2.6 12.2c2.4-1 5.3-1.2 8.2-.2 2.2.8 4.4.8 6.6.1"/><circle cx="7.2" cy="7.2" r="1.3"/><circle cx="12.6" cy="6.4" r=".8"/>
+      </svg>
+      <h1 class="boot-title">Lunar Landing Site Navigator</h1>
+      <p class="boot-sub">Sun, Earth and the real terrain horizon at any landing site</p>
+      <div class="boot-progress" aria-hidden="true"><div id="boot-bar" class="boot-bar"></div></div>
+      <p id="boot-msg" class="boot-msg">Starting…</p>
+      <div id="boot-error" class="boot-error" hidden></div>
+      <noscript><p class="boot-error">This application needs JavaScript (ES modules) to compute the ephemerides in your browser.</p></noscript>
+    </div>
+  </div>
+
+  <header class="app-header">
+    <button type="button" id="drawer-toggle" class="icon-btn drawer-toggle" aria-controls="rail" aria-expanded="false" aria-label="Show scenarios and sites">
+      <svg class="ico" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 5.5h14M3 10h14M3 14.5h14"/></svg>
+    </button>
+    <div class="brand">
+      <svg class="brand-logo" width="26" height="26" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+        <circle cx="10" cy="10" r="7.6"/><path d="M2.6 12.2c2.4-1 5.3-1.2 8.2-.2 2.2.8 4.4.8 6.6.1"/><circle cx="7.2" cy="7.2" r="1.3"/><circle cx="12.6" cy="6.4" r=".8"/>
+      </svg>
+      <div class="brand-text">
+        <span class="brand-name">Lunar Landing Site Navigator</span>
+        <span class="brand-tag">Sun · Earth · terrain horizon</span>
+      </div>
+    </div>
+    <nav class="view-tabs" role="tablist" aria-label="Views">
+      <button type="button" class="view-tab" role="tab" id="tab-explore" data-view="explore" aria-controls="view-explore" aria-selected="true">Explore</button>
+      <button type="button" class="view-tab" role="tab" id="tab-compare" data-view="compare" aria-controls="view-compare" aria-selected="false" tabindex="-1">Compare</button>
+      <button type="button" class="view-tab" role="tab" id="tab-plan" data-view="plan" aria-controls="view-plan" aria-selected="false" tabindex="-1">Plan</button>
+      <button type="button" class="view-tab" role="tab" id="tab-learn" data-view="learn" aria-controls="view-learn" aria-selected="false" tabindex="-1">Learn</button>
+    </nav>
+    <div id="time-control" class="time-control-slot"></div>
+    <div class="header-actions">
+      <button type="button" class="btn btn-ghost btn-sm" data-source="" id="sources-btn" title="Data and sources">Sources</button>
+      <div id="options-slot" class="action-slot"></div>
+      <div id="export-slot" class="action-slot"></div>
+      <button type="button" id="theme-toggle" class="icon-btn" aria-label="Switch theme"></button>
+    </div>
+  </header>
+
+  <div class="app-body">
+    <aside id="rail" class="rail" aria-label="Scenarios and sites">
+      <section id="scenario-bar" class="rail-section" aria-labelledby="scn-heading"></section>
+      <section id="site-picker" class="rail-section rail-section--grow" aria-labelledby="sites-heading"></section>
+    </aside>
+    <div id="drawer-scrim" class="drawer-scrim" aria-hidden="true"></div>
+
+    <main id="main" class="main" tabindex="-1">
+      <div id="print-header" class="print-header"></div>
+
+      <section id="view-explore" class="view view-explore" role="tabpanel" aria-labelledby="tab-explore">
+        <div class="explore-centre">
+          <div class="card card--flush map-card">
+            <div id="mount-map" class="mount mount-map" aria-label="Map and globe"></div>
+          </div>
+          <div class="card card--flush sky-card">
+            <div id="mount-sky" class="mount mount-sky" aria-label="Sky panorama"></div>
+          </div>
+          <div class="card card--flush timeline-card">
+            <div id="mount-timeline" class="mount mount-timeline" aria-label="Timeline"></div>
+          </div>
+        </div>
+        <div class="explore-right">
+          <div id="status-card" class="status-slot"></div>
+          <div id="kpi-panel" class="kpi-slot"></div>
+        </div>
+      </section>
+
+      <section id="view-compare" class="view view-compare" role="tabpanel" aria-labelledby="tab-compare" hidden></section>
+      <section id="view-plan" class="view view-plan" role="tabpanel" aria-labelledby="tab-plan" hidden></section>
+      <section id="view-learn" class="view view-learn" role="tabpanel" aria-labelledby="tab-learn" hidden></section>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>Data: NASA/JPL NAIF SPICE (DE440), NASA LRO LOLA &amp; LROC. All values are computed in your browser; times are UTC.</p>
+    <p><a href="../docs/ARCHITECTURE.md">Documentation &amp; methods</a> · NASA Space Apps Challenge 2026 · Not an official NASA product.</p>
+  </footer>
+
+  <div id="toasts" class="toasts" aria-live="polite" aria-relevant="additions"></div>
+</body>
+</html>

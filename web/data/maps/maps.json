@@ -1,0 +1,339 @@
+{
+ "format": "lunarnav-maps-1",
+ "projections": {
+  "equirect": "lon -180..180 left to right, lat +90 at top, pixel-registered",
+  "polar_stereo": "spherical polar stereographic, true scale at the pole, R = 1737400 m; r = 2R tan((90-|lat|)/2); south: x = r sin(lon), y = r cos(lon); north: x = r sin(lon), y = -r cos(lon); image top = +y, left = -x"
+ },
+ "maps": {
+  "global_color": {
+   "file": "global_color.jpg",
+   "projection": "equirect",
+   "width": 4096,
+   "height": 2048,
+   "extent_deg": {
+    "lon": [
+     -180,
+     180
+    ],
+    "lat": [
+     -90,
+     90
+    ]
+   },
+   "content": "LROC WAC colour (albedo) mosaic, sRGB",
+   "credit": "NASA's Scientific Visualization Studio, CGI Moon Kit (2019, colour map updated 2025), Ernie Wright; colour from LRO LROC WAC mosaics (Arizona State University). Public domain.",
+   "source_url": "https://svs.gsfc.nasa.gov/vis/a000000/a004700/a004720/lroc_color_16bit_srgb_4k.tif",
+   "landing_page": "https://svs.gsfc.nasa.gov/4720",
+   "lon_origin_check": {
+    "corr_brightness_height_as_is": 0.539,
+    "corr_if_rolled_180deg": -0.484
+   }
+  },
+  "global_shade": {
+   "file": "global_shade.jpg",
+   "projection": "equirect",
+   "width": 4096,
+   "height": 2048,
+   "extent_deg": {
+    "lon": [
+     -180,
+     180
+    ],
+    "lat": [
+     -90,
+     90
+    ]
+   },
+   "content": "LOLA colour-shaded relief (hypsometric tint x hillshade, light from azimuth 315 deg map-north-west, altitude 35 deg)",
+   "legend": {
+    "quantity": "height above the 1737.4 km reference sphere",
+    "unit": "m",
+    "stops": [
+     [
+      -9000,
+      "#1a285c"
+     ],
+     [
+      -6000,
+      "#265296"
+     ],
+     [
+      -3500,
+      "#3c8caf"
+     ],
+     [
+      -1500,
+      "#6eb4a0"
+     ],
+     [
+      0,
+      "#aac88c"
+     ],
+     [
+      1500,
+      "#d7cd87"
+     ],
+     [
+      3500,
+      "#cda064"
+     ],
+     [
+      6000,
+      "#aa6e50"
+     ],
+     [
+      8500,
+      "#dccdc8"
+     ],
+     [
+      11000,
+      "#ffffff"
+     ]
+    ]
+   },
+   "credit": "Smith, D.E. et al. (2017), LRO LOLA Gridded Data Records, LRO-L-LOLA-4-GDR-V1.0, NASA Planetary Data System; Smith, D.E. et al. (2010), The Lunar Orbiter Laser Altimeter investigation on the Lunar Reconnaissance Orbiter mission, Space Sci. Rev. 150, 209-241. Rendered by lunarnav."
+  },
+  "south_shade": {
+   "file": "south_shade.jpg",
+   "projection": "polar_stereo",
+   "pole": "S",
+   "width": 2048,
+   "height": 2048,
+   "m_per_px": 300.0,
+   "extent": {
+    "x_m": [
+     -307200.0,
+     307200.0
+    ],
+    "y_m": [
+     -307200.0,
+     307200.0
+    ]
+   },
+   "same_extent_as": "dem/south.json",
+   "content": "LOLA colour-shaded relief (hypsometric tint x hillshade)",
+   "legend": {
+    "quantity": "height above the 1737.4 km reference sphere",
+    "unit": "m",
+    "stops": [
+     [
+      -9000,
+      "#1a285c"
+     ],
+     [
+      -6000,
+      "#265296"
+     ],
+     [
+      -3500,
+      "#3c8caf"
+     ],
+     [
+      -1500,
+      "#6eb4a0"
+     ],
+     [
+      0,
+      "#aac88c"
+     ],
+     [
+      1500,
+      "#d7cd87"
+     ],
+     [
+      3500,
+      "#cda064"
+     ],
+     [
+      6000,
+      "#aa6e50"
+     ],
+     [
+      8500,
+      "#dccdc8"
+     ],
+     [
+      11000,
+      "#ffffff"
+     ]
+    ]
+   },
+   "credit": "LOLA LDEM_80S_20MPP_ADJ (PGDA, 20 m/px) area-averaged 12x12 to 240 m/px; 2.2% of pixels (outside the 20 m grid) from LDEM_128. Rendered by lunarnav."
+  },
+  "north_shade": {
+   "file": "north_shade.jpg",
+   "projection": "polar_stereo",
+   "pole": "N",
+   "width": 2048,
+   "height": 2048,
+   "m_per_px": 300.0,
+   "extent": {
+    "x_m": [
+     -307200.0,
+     307200.0
+    ],
+    "y_m": [
+     -307200.0,
+     307200.0
+    ]
+   },
+   "same_extent_as": "dem/north.json",
+   "content": "LOLA colour-shaded relief (hypsometric tint x hillshade)",
+   "legend": {
+    "quantity": "height above the 1737.4 km reference sphere",
+    "unit": "m",
+    "stops": [
+     [
+      -9000,
+      "#1a285c"
+     ],
+     [
+      -6000,
+      "#265296"
+     ],
+     [
+      -3500,
+      "#3c8caf"
+     ],
+     [
+      -1500,
+      "#6eb4a0"
+     ],
+     [
+      0,
+      "#aac88c"
+     ],
+     [
+      1500,
+      "#d7cd87"
+     ],
+     [
+      3500,
+      "#cda064"
+     ],
+     [
+      6000,
+      "#aa6e50"
+     ],
+     [
+      8500,
+      "#dccdc8"
+     ],
+     [
+      11000,
+      "#ffffff"
+     ]
+    ]
+   },
+   "credit": "LOLA LDEM_80N_20M (PDS, 20 m/px) area-averaged 12x12 to 240 m/px; 2.2% of pixels (outside the 20 m grid) from LDEM_128. Rendered by lunarnav."
+  },
+  "south_avg_sun": {
+   "file": "south_avg_sun.png",
+   "projection": "polar_stereo",
+   "pole": "S",
+   "width": 2048,
+   "height": 2048,
+   "m_per_px": 300.0,
+   "extent": {
+    "x_m": [
+     -307200.0,
+     307200.0
+    ],
+    "y_m": [
+     -307200.0,
+     307200.0
+    ]
+   },
+   "same_extent_as": "dem/south.json",
+   "content": "average Sun visibility: fraction of hourly time steps over 18.6 years in which any part of the Sun disc is above the local horizon (LOLA LDEM_65S_240M topography, surface observer)",
+   "legend": {
+    "quantity": "fraction of time Sun visible",
+    "unit": "1",
+    "encoding": "palette index k: 0 = never visible (permanent shadow); k = 1..255 -> fraction (k - 1) / 254",
+    "never_visible_color": "#141828",
+    "stops": [
+     [
+      0.0,
+      "#000004"
+     ],
+     [
+      0.2,
+      "#420a68"
+     ],
+     [
+      0.4,
+      "#932667"
+     ],
+     [
+      0.6,
+      "#dd513a"
+     ],
+     [
+      0.8,
+      "#fca50a"
+     ],
+     [
+      1.0,
+      "#fcffa4"
+     ]
+    ]
+   },
+   "credit": "Mazarico, E. et al. (2011), Illumination conditions of the lunar polar regions using LOLA topography, Icarus 211, 1066-1081. Data: LOLA GDR extras/illumination, release 2016 (PDS).",
+   "source_url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/extras/illumination/img/avgvisib_65s_240m_201608.img"
+  },
+  "south_avg_earth": {
+   "file": "south_avg_earth.png",
+   "projection": "polar_stereo",
+   "pole": "S",
+   "width": 2048,
+   "height": 2048,
+   "m_per_px": 300.0,
+   "extent": {
+    "x_m": [
+     -307200.0,
+     307200.0
+    ],
+    "y_m": [
+     -307200.0,
+     307200.0
+    ]
+   },
+   "same_extent_as": "dem/south.json",
+   "content": "average Earth visibility: fraction of hourly time steps over 18.6 years in which any part of the Earth disc is above the local horizon (LOLA LDEM_65S_240M topography, surface observer)",
+   "legend": {
+    "quantity": "fraction of time Earth visible",
+    "unit": "1",
+    "encoding": "palette index k: 0 = never visible (permanent shadow); k = 1..255 -> fraction (k - 1) / 254",
+    "never_visible_color": "#141828",
+    "stops": [
+     [
+      0.0,
+      "#440154"
+     ],
+     [
+      0.2,
+      "#414487"
+     ],
+     [
+      0.4,
+      "#2a788e"
+     ],
+     [
+      0.6,
+      "#22a884"
+     ],
+     [
+      0.8,
+      "#7ad151"
+     ],
+     [
+      1.0,
+      "#fde725"
+     ]
+    ]
+   },
+   "credit": "Mazarico, E. et al. (2011), Illumination conditions of the lunar polar regions using LOLA topography, Icarus 211, 1066-1081. Data: LOLA GDR extras/illumination, release 2016 (PDS).",
+   "source_url": "https://pds-geosciences.wustl.edu/lro/lro-l-lola-3-rdr-v1/lrolol_1xxx/extras/illumination/img/avgvisib_65s_240m_201608_earth.img"
+  }
+ }
+}

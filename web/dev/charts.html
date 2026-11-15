@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Charts harness — Lunar Landing Site Navigator</title>
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/charts.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 var(--font); }
+    header.hb { position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+      padding: 8px 16px; background: var(--surface); border-bottom: 1px solid var(--border); }
+    header.hb h1 { margin: 0 12px 0 0; font-size: 15px; }
+    header.hb button, header.hb select { min-height: 28px; padding: 2px 10px; border: 1px solid var(--border); border-radius: 6px;
+      background: var(--surface-2); color: var(--text); font: inherit; cursor: pointer; }
+    #now { font-variant-numeric: tabular-nums; font-weight: 600; }
+    #log { color: var(--text-3); font-size: 12px; }
+    main { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr)); gap: 16px; padding: 16px; }
+    .panel { min-width: 0; padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+    .panel.wide { grid-column: 1 / -1; }
+
+    #sky { height: 560px; } #timeline { height: 400px; } #year { height: 440px; } #lw { height: 680px; }
+  </style>
+</head>
+<body>
+  <header class="hb">
+    <h1>Charts harness</h1>
+    <select id="active" aria-label="Active scenario"></select>
+    <button data-step="-86400000">−1 d</button><button data-step="-3600000">−1 h</button>
+    <span id="now"></span>
+    <button data-step="3600000">+1 h</button><button data-step="86400000">+1 d</button>
+    <button id="play">Play</button>
+    <button id="out">Out of coverage</button>
+    <button id="theme">Toggle theme</button>
+    <span id="log"></span>
+  </header>
+  <main>
+    <section class="panel wide" id="sky"></section>
+    <section class="panel wide" id="timeline"></section>
+    <section class="panel wide" id="compare"></section>
+    <section class="panel" id="year"></section>
+    <section class="panel" id="lw"></section>
+  </main>
+  <script type="module" src="./charts-harness.js"></script>
+</body>
+</html>
