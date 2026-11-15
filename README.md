@@ -34,7 +34,8 @@ It is a static web app — no backend, no build step, works offline.
 python -m http.server 8080 --directory web
 ```
 
-Then open <http://localhost:8080>. To publish, enable GitHub Pages for the repository
+Then open <http://localhost:8080>. Submission materials (slide deck PDF, screenshots,
+form texts) are in `submission.rar`. To publish, enable GitHub Pages for the repository
 root; the app is served at `/web/`.
 
 ## Data (all real, all reproducible)
@@ -110,7 +111,7 @@ python -m pytest
 
 Data: NASA/JPL NAIF, NASA LRO LOLA and LROC teams, NASA Scientific Visualization
 Studio, JPL Horizons. Rendering: three.js (MIT). This project is not affiliated with
-or endorsed by NASA. Parts of the code and documentation were written with the help
-of an AI coding assistant.
+or endorsed by NASA. Full list of data, software and references, and the note on
+AI-assisted development: [CREDITS.md](CREDITS.md).
 
 License: MIT.
